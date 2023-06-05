@@ -1,0 +1,305 @@
+<div class="container-fluid">
+    <p-toast></p-toast>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-12">
+                    <h1>
+                        <i class="fa-regular fa-rectangle-list"></i> Lista de usuarios registrados en la plataforma
+                    </h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <p-button label="Registrar usuario" icon="pi pi-user"
+                        styleClass="p-button-raised  p-button-outlined " badgeClass="p-badge-danger"
+                        (click)="lgModal.show()"></p-button>
+                </div>
+                <div class="col-12">
+                    <p-table #dt1 [value]="usuario" [scrollable]="true" scrollHeight="500px" selectionMode="single"
+                        [(selection)]="selectUsuario" dataKey="id" styleClass="p-datatable-customers" [rows]="10"
+                        [paginator]="true" stateStorage="local" stateKey="statedemo-local">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th pSortableColumn="nombrecompleto" id="nombrecompleto" class="text-center"> NOMBRE Y
+                                    APELLIDO <p-sortIcon field="nombrecompleto"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="nombreusuario" id="nombreusuario" class="text-center">USUARIO
+                                    <p-sortIcon field="nombreusuario"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="correo" id="correo" class="text-center">CORREO <p-sortIcon
+                                        field="correo"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="dni" id="representative" class="text-center">DNI <p-sortIcon
+                                        field="dni"></p-sortIcon>
+                                </th>
+                                <th pSortableColumn="celular" id="celular" class="text-center">CELULAR <p-sortIcon
+                                        field="celular">
+                                    </p-sortIcon>
+                                </th>
+                                <th pSortableColumn="sexo" id="sexo" class="text-center">SEXO <p-sortIcon field="sexo">
+                                    </p-sortIcon>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th id="nombrecompleto">
+                                    <input pInputText type="text"
+                                        (input)="dt1.filter($any($event.target).value, 'nombrecompleto', 'contains')"
+                                        [value]="$any(dt1.filters['nombrecompleto'])?.value" placeholder="Search"
+                                        class="p-column-filter">
+                                </th>
+                                <th id="nombreusuario">
+                                    <input pInputText type="text"
+                                        (input)="dt1.filter($any($event.target).value, 'nombreusuario', 'contains')"
+                                        [value]="$any(dt1.filters['nombreusuario'])?.value" placeholder="Search"
+                                        class="p-column-filter">
+                                </th>
+                                <th id="correo">
+                                    <input pInputText type="text"
+                                        (input)="dt1.filter($any($event.target).value, 'correo', 'contains')"
+                                        [value]="$any(dt1.filters['correo'])?.value" placeholder="Search"
+                                        class="p-column-filter">
+                                </th>
+                                <th id="dni">
+                                    <input pInputText type="text"
+                                        (input)="dt1.filter($any($event.target).value, 'dni', 'contains')"
+                                        [value]="$any(dt1.filters['dni'])?.value" placeholder="Search"
+                                        class="p-column-filter">
+                                </th>
+                                <th id="celular">
+                                    <input pInputText type="text"
+                                        (input)="dt1.filter($any($event.target).value, 'celular', 'contains')"
+                                        [value]="$any(dt1.filters['celular'])?.value" placeholder="Search"
+                                        class="p-column-filter">
+                                </th>
+                                <th id="celular">
+                                    <input pInputText type="text"
+                                        (input)="dt1.filter($any($event.target).value, 'sexo', 'contains')"
+                                        [value]="$any(dt1.filters['sexo'])?.value" placeholder="Search"
+                                        class="p-column-filter">
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-usuario>
+                            <tr [pSelectableRow]="usuario">
+                                <td>
+                                    <span class="p-column-title">Nombre y apellido</span>
+                                    {{usuario.nombrecompleto + ' ' + usuario.apellidosusuario}}
+                                </td>
+                                <td class="text-center">
+                                    <span class="p-column-title">Usuario</span>
+                                    <span class="image-text">{{usuario.nombreusuario}}</span>
+                                </td>
+                                <td>
+                                    <span class="p-column-title">Correo</span>
+                                    <span class="image-text">{{usuario.correo}}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="p-column-title">Dni</span>
+                                    <span class="image-text">{{usuario.dni}}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="p-column-title">Celular</span>
+                                    <span>{{usuario.celular}}</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="p-column-title">Sexo</span>
+                                    <span>{{usuario.sexo}}</span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="12">No hay usuarios.</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header encabezado">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">Registrar usuario</h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mb-4">
+                <br>
+                <form [formGroup]="usuarioFormGroup" class="g-3 needs-validation" novalidate>
+                    <div class="row mb-4">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <input id="float-input" (keyup)="buscarPersonaNatural($event)" type="text" pInputText class="form-control"
+                                    formControlName="dni" [ngClass]="{'is-invalid': submite&& U['dni'].errors}">
+                                <label for="float-input">DNI</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['dni'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['dni'].errors['required']">
+                                        Por favor ingrese un número de dni.
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['dni'].errors['minlength']">
+                                        El dni debe tener mínimo 8 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['dni'].errors['maxlength']">
+                                        El dni debe tener máximo 8 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['dni'].errors['pattern']">
+                                        El dni debe tener ser númerico
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control" [readOnly]="readonly"
+                                    formControlName="nombrecompleto" [ngClass]="{'is-invalid': submite&& U['nombrecompleto'].errors}">
+                                <label for="float-input">Nombre completo</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['nombrecompleto'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['nombrecompleto'].errors['required']">
+                                        Por favor ingrese su nombre.
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['nombrecompleto'].errors['minlength']">
+                                        El nombre debe tener mínimo 3 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['nombrecompleto'].errors['maxlength']">
+                                        El nombre debe tener máximo 100 caracteres
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control" [readOnly]="readonly"
+                                    formControlName="apellidosusuario" [ngClass]="{'is-invalid': submite&& U['apellidosusuario'].errors}">
+                                <label for="float-input">Apellido completo</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['apellidosusuario'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['apellidosusuario'].errors['required']">
+                                        Por favor ingrese su nombre.
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['apellidosusuario'].errors['minlength']">
+                                        El nombre debe tener mínimo 3 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['apellidosusuario'].errors['maxlength']">
+                                        El nombre debe tener máximo 100 caracteres
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <p-dropdown [options]="genero" id="float-input"  placeholder="Seleccione un Genero"
+                                    optionLabel="name" optionValue="id" [showClear]="true" formControlName="sexo" [ngClass]="{'is-invalid': submite&& U['sexo'].errors}">
+                                </p-dropdown>
+                                <label for="float-input">Sexo</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['sexo'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['sexo'].errors['required']">
+                                        Por favor ingrese su sexo
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <p-dropdown [options]="roles" id="float-input"  placeholder="Seleccione un rol"
+                                    optionLabel="name" optionValue="id" [showClear]="true" formControlName="roles" [ngClass]="{'is-invalid': submite&& U['roles'].errors}">
+                                </p-dropdown>
+                                <label for="float-input">Roles</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['roles'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['roles'].errors['required']">
+                                        Por favor ingrese el rol
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control" formControlName="correo" [ngClass]="{'is-invalid': submite&& U['correo'].errors}">
+                                <label for="float-input">Correo</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['correo'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['correo'].errors['required']">
+                                        Por favor ingrese su correo
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['correo'].errors['minlength']">
+                                        El correo debe tener mínimo 10 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['correo'].errors['maxlength']">
+                                        El correo debe tener máximo 25 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['correo'].errors['email']">
+                                        El correo ingresado no es valido, ejemplo: example@example.com
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control" formControlName="correoalternativo" [ngClass]="{'is-invalid': submite&& U['correoalternativo'].errors}">
+                                <label for="float-input">Correo Alternativo</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['correoalternativo'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['correoalternativo'].errors['minlength']">
+                                        El correo debe tener mínimo 10 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['correoalternativo'].errors['maxlength']">
+                                        El correo debe tener máximo 25 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['correoalternativo'].errors['email']">
+                                        El correo ingresado no es valido, ejemplo: example@example.com
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <input type="date" id="float-input" pInputText formControlName="fechanacimiento" class="form-control" [ngClass]="{'is-invalid': submite&& U['fechanacimiento'].errors}">
+                                <label for="float-input">Fecha de Naciemiento</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['fechanacimiento'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['fechanacimiento'].errors['required']">
+                                        Por favor ingrese su fecha de naciemiento
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control" formControlName="celular" [ngClass]="{'is-invalid': submite&& U['celular'].errors}">
+                                <label for="float-input">Celular</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['celular'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['celular'].errors['required']">
+                                        Por favor ingrese su correo
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['celular'].errors['minlength']">
+                                        El celular debe tener mínimo 9 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['celular'].errors['maxlength']">
+                                        El celular debe tener máximo 9 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['celular'].errors['pattern']">
+                                        El celular ingresado debe contener caracteres númericos
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p-button icon="pi pi-check" (click)="registrarNuevoUsuario()" label="Registrar"
+                            class="p-button-text">
+                        </p-button>
+                        <p-button icon="pi pi-times" (click)="lgModal.hide()" label="No"></p-button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

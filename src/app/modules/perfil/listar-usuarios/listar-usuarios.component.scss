@@ -1,0 +1,102 @@
+
+.card{
+    border: 1px solid #075DAA;
+}
+
+.card-header{
+    background-color: #075DAA;
+}
+  
+i {
+  font-size: 40px;
+  color: aliceblue;
+  background-size: cover;
+  margin-top: 2px;
+}
+
+.acciones{
+    text-align: center;
+}
+h1{
+    color: white;
+    font-size: 35px;
+}
+
+:host ::ng-deep .p-button {
+    margin: 0 .5rem 0 0;
+    min-width: 10rem;
+}
+
+p {
+    margin: 0;
+}
+
+.confirmation-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+:host ::ng-deep .p-button{
+    min-width: 6rem;
+}
+
+.sizes {
+    .p-inputtext {
+        display: block;
+        margin-bottom: .5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+:host ::ng-deep .p-dropdown {
+    width: 100%;
+  }
+
+
+
+.p-field * {
+    display: block;
+}
+
+#float-input{
+    width: 100%;
+}
+
+/* .row{
+    margin-block: 20px;
+} */
+
+.titulo{
+    font-size: 30px;
+    text-align: center;
+}
+
+/* .card {
+    margin-bottom: 0.75rem;
+    padding: 8px;
+  }
+ */
+
+.encabezado{
+    background-color: #075DAA;
+    
+}
+
+#dialog-sizes-name1{
+    color: white;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.visually-hidden{
+    color: white;
+}
+
+.modal-content{
+    border: #075DAA solid 1px;
+}

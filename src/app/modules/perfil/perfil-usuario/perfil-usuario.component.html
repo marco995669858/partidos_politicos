@@ -1,0 +1,259 @@
+<div class="container-fluid">
+    <p-toast></p-toast>
+    <div class="card">
+        <div class="card-header">
+            <div class="col-12">
+                <h1>
+                    <i class="fa-regular fa-address-card"></i> Perfil del usuario.
+                </h1>
+
+            </div>
+           
+        </div>
+        <div class="card-body">
+            <form [formGroup]="usuarioFormGroup" class="g-3 needs-validation" novalidate>
+                <div class="row mb-4">                
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-12 text-center mb-4">
+                            <legend>Datos personales</legend>
+                            <hr>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control"
+                                    formControlName="dni" [ngClass]="{'is-invalid': submite&& U['dni'].errors}" [readOnly]="readonly">
+                                <label for="float-input">DNI</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['dni'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['dni'].errors['required']">
+                                        Por favor ingrese un número de dni.
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['dni'].errors['minlength']">
+                                        El dni debe tener mínimo 8 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['dni'].errors['maxlength']">
+                                        El dni debe tener máximo 8 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['dni'].errors['pattern']">
+                                        El dni debe tener ser númerico
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control" [readOnly]="readonly"
+                                    formControlName="nombrecompleto" [ngClass]="{'is-invalid': submite&& U['nombrecompleto'].errors}" [readOnly]="readonly">
+                                <label for="float-input">Nombre completo</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['nombrecompleto'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['nombrecompleto'].errors['required']">
+                                        Por favor ingrese su nombre.
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['nombrecompleto'].errors['minlength']">
+                                        El nombre debe tener mínimo 3 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['nombrecompleto'].errors['maxlength']">
+                                        El nombre debe tener máximo 100 caracteres
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control" [readOnly]="readonly"
+                                    formControlName="apellidosusuario" [ngClass]="{'is-invalid': submite&& U['apellidosusuario'].errors}" [readOnly]="readonly">
+                                <label for="float-input">Apellido completo</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['apellidosusuario'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['apellidosusuario'].errors['required']">
+                                        Por favor ingrese su nombre.
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['apellidosusuario'].errors['minlength']">
+                                        El nombre debe tener mínimo 3 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['apellidosusuario'].errors['maxlength']">
+                                        El nombre debe tener máximo 100 caracteres
+                                    </div>
+                                </div>
+                            </span>
+                        </div>                       
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-12 text-center mb-4">
+                            <legend>Datos de perfil</legend>
+                            <hr>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="p-float-label">
+                                <input id="float-input" type="text" pInputText class="form-control" formControlName="correo" [ngClass]="{'is-invalid': submite&& U['correo'].errors}">
+                                <label for="float-input">Correo</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['correo'].errors" class="invalid-tooltip">
+                                    <div *ngIf="usuarioFormGroup.controls['correo'].errors['required']">
+                                        Por favor ingrese su correo
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['correo'].errors['minlength']">
+                                        El correo debe tener mínimo 10 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['correo'].errors['maxlength']">
+                                        El correo debe tener máximo 25 caracteres
+                                    </div>
+                                    <div *ngIf="usuarioFormGroup.controls['correo'].errors['email']">
+                                        El correo ingresado no es valido, ejemplo: example@example.com
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="p-float-label">
+                                <input id="float-input" type="password" pInputText class="form-control" 
+                                    formControlName="password" [ngClass]="{'is-invalid': submite&& U['password'].errors}">
+                                <label for="float-input">Contraseña Nueva</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['password'].errors"
+                                class="invalid-tooltip">
+                                        <div *ngIf="usuarioFormGroup.controls['password'].errors['required']">
+                                            Campo requerido.
+                                        </div>
+                                        <div *ngIf="usuarioFormGroup.controls['password'].errors['minlength']">
+                                            ¡Debe tener al menos 8 caracteres!
+                                        </div>
+                                        <div *ngIf="usuarioFormGroup.controls['password'].errors['hasNumber']">
+                                            ¡Debe contener al menos 1 número!
+                                        </div>
+                                        <div *ngIf="usuarioFormGroup.controls['password'].errors['hasCapitalCase']">
+                                            ¡Debe contener al menos 1 en Mayúsculas!
+                                        </div>
+                                        <div *ngIf="usuarioFormGroup.controls['password'].errors['hasSmallCase']">
+                                            ¡Debe contener al menos 1 letra en mayúsculas y minúsculas!
+                                        </div>
+                                        <div *ngIf="usuarioFormGroup.controls['password'].errors['hasSpecialCharacters']">
+                                            ¡Debe contener al menos 1 carácter especial!
+                                        </div>
+                                    </div>
+                            </span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <span class="p-float-label">
+                                <input id="float-input" type="password" pInputText class="form-control" 
+                                    formControlName="confirmPassword" [ngClass]="{'is-invalid': submite&& U['confirmPassword'].errors}">
+                                <label for="float-input">Repetir contraseña</label>
+                                <div *ngIf="submite && usuarioFormGroup.controls['confirmPassword'].errors"
+                                        class="invalid-tooltip">
+                                        <div *ngIf="usuarioFormGroup.controls['confirmPassword'].errors['required']">
+                                            Campo requerido.
+                                        </div>
+                                        <div
+                                            *ngIf="usuarioFormGroup.controls['confirmPassword'].errors['NoPassswordMatch']">
+                                            ¡La contraseña no es igual a la anterior!
+                                        </div>
+                                    </div>
+                            </span>
+                        </div>                       
+                    </div>
+                </div>
+                
+               <!--  <div class="row mb-4">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <span class="p-float-label">
+                            <p-dropdown [options]="genero" id="float-input"  placeholder="Seleccione un Genero"
+                                optionLabel="name" optionValue="id" [showClear]="true" formControlName="sexo" [ngClass]="{'is-invalid': submite&& U['sexo'].errors}">
+                            </p-dropdown>
+                            <label for="float-input">Sexo</label>
+                            <div *ngIf="submite && usuarioFormGroup.controls['sexo'].errors" class="invalid-tooltip">
+                                <div *ngIf="usuarioFormGroup.controls['sexo'].errors['required']">
+                                    Por favor ingrese su sexo
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <span class="p-float-label">
+                            <p-dropdown [options]="roles" id="float-input"  placeholder="Seleccione un rol"
+                                optionLabel="name" optionValue="id" [showClear]="true" formControlName="roles" [ngClass]="{'is-invalid': submite&& U['roles'].errors}">
+                            </p-dropdown>
+                            <label for="float-input">Roles</label>
+                            <div *ngIf="submite && usuarioFormGroup.controls['roles'].errors" class="invalid-tooltip">
+                                <div *ngIf="usuarioFormGroup.controls['roles'].errors['required']">
+                                    Por favor ingrese el rol
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <span class="p-float-label">
+                            <input id="float-input" type="text" pInputText class="form-control" formControlName="correo" [ngClass]="{'is-invalid': submite&& U['correo'].errors}">
+                            <label for="float-input">Correo</label>
+                            <div *ngIf="submite && usuarioFormGroup.controls['correo'].errors" class="invalid-tooltip">
+                                <div *ngIf="usuarioFormGroup.controls['correo'].errors['required']">
+                                    Por favor ingrese su correo
+                                </div>
+                                <div *ngIf="usuarioFormGroup.controls['correo'].errors['minlength']">
+                                    El correo debe tener mínimo 10 caracteres
+                                </div>
+                                <div *ngIf="usuarioFormGroup.controls['correo'].errors['maxlength']">
+                                    El correo debe tener máximo 25 caracteres
+                                </div>
+                                <div *ngIf="usuarioFormGroup.controls['correo'].errors['email']">
+                                    El correo ingresado no es valido, ejemplo: example@example.com
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div> -->
+               <!--  <div class="row mb-4">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <span class="p-float-label">
+                            <input id="float-input" type="text" pInputText class="form-control" formControlName="correoalternativo" [ngClass]="{'is-invalid': submite&& U['correoalternativo'].errors}">
+                            <label for="float-input">Correo Alternativo</label>
+                            <div *ngIf="submite && usuarioFormGroup.controls['correoalternativo'].errors" class="invalid-tooltip">
+                                <div *ngIf="usuarioFormGroup.controls['correoalternativo'].errors['minlength']">
+                                    El correo debe tener mínimo 10 caracteres
+                                </div>
+                                <div *ngIf="usuarioFormGroup.controls['correoalternativo'].errors['maxlength']">
+                                    El correo debe tener máximo 25 caracteres
+                                </div>
+                                <div *ngIf="usuarioFormGroup.controls['correoalternativo'].errors['email']">
+                                    El correo ingresado no es valido, ejemplo: example@example.com
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <span class="p-float-label">
+                            <input type="date" id="float-input" pInputText formControlName="fechanacimiento" class="form-control" [ngClass]="{'is-invalid': submite&& U['fechanacimiento'].errors}">
+                            <label for="float-input">Fecha de Naciemiento</label>
+                            <div *ngIf="submite && usuarioFormGroup.controls['fechanacimiento'].errors" class="invalid-tooltip">
+                                <div *ngIf="usuarioFormGroup.controls['fechanacimiento'].errors['required']">
+                                    Por favor ingrese su fecha de naciemiento
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-3">
+                        <span class="p-float-label">
+                            <input id="float-input" type="text" pInputText class="form-control" formControlName="celular" [ngClass]="{'is-invalid': submite&& U['celular'].errors}">
+                            <label for="float-input">Celular</label>
+                            <div *ngIf="submite && usuarioFormGroup.controls['celular'].errors" class="invalid-tooltip">
+                                <div *ngIf="usuarioFormGroup.controls['celular'].errors['required']">
+                                    Por favor ingrese su correo
+                                </div>
+                                <div *ngIf="usuarioFormGroup.controls['celular'].errors['minlength']">
+                                    El celular debe tener mínimo 9 caracteres
+                                </div>
+                                <div *ngIf="usuarioFormGroup.controls['celular'].errors['maxlength']">
+                                    El celular debe tener máximo 9 caracteres
+                                </div>
+                                <div *ngIf="usuarioFormGroup.controls['celular'].errors['pattern']">
+                                    El celular ingresado debe contener caracteres númericos
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div> -->
+                <div class="text-center">
+                    <p-button icon="pi pi-check" (click)="ActualizarDatosdelPerfil()" label="Enviar"
+                        class="p-button-text">
+                    </p-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
